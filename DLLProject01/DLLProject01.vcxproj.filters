@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DeleteIfNoSecToIR.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ReleaseIfNot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SourcePropOnBOMLinecheck.cpp">
+    <ClCompile Include="TC_Query_Referenced.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

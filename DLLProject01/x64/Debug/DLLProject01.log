@@ -1,3 +1,16 @@
-﻿  DeleteIfNoSecToIR.cpp
+﻿  TC_Query_Referenced.c
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(32): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1469): note: see declaration of 'vsprintf'
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(63): warning C4013: 'EMH_get_error_string' undefined; assuming extern returning int
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(122): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(122): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(133): warning C4047: 'function': 'int **' differs in levels of indirection from 'int *'
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(133): warning C4024: 'WSOM_where_referenced2': different types for formal and actual parameter 4
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(133): warning C4047: 'function': 'tag_t **' differs in levels of indirection from 'tag_t *'
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(133): warning C4024: 'WSOM_where_referenced2': different types for formal and actual parameter 5
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(160): warning C4013: 'QRY_find' undefined; assuming extern returning int
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(166): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+c:\users\t50372\source\repos\dllproject01\dllproject01\tc_query_referenced.c(167): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: see declaration of 'strcpy'
      Creating library C:\Users\T50372\source\repos\DLLProject01\x64\Debug\DLLProject01.lib and object C:\Users\T50372\source\repos\DLLProject01\x64\Debug\DLLProject01.exp
   DLLProject01.vcxproj -> C:\Users\T50372\source\repos\DLLProject01\x64\Debug\DLLProject01.dll

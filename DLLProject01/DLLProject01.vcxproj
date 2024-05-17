@@ -19,9 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DeleteIfNoSecToIR.cpp" />
-    <ClCompile Include="ReleaseIfNot.cpp" />
-    <ClCompile Include="SourcePropOnBOMLinecheck.cpp" />
+    <ClCompile Include="TC_Query_Referenced.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
