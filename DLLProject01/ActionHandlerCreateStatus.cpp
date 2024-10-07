@@ -3,15 +3,16 @@
 #include<tccore/method.h>
 #include<epm/epm.h>
 #include<tccore/aom_prop.h>
+#include<fstream>
 #define DLLAPI _declspec(dllexport)
 using namespace std;
 
 int status = 0;
 char* cError = NULL;
-
 int checkNullTag(tag_t tag);
+ofstream outFile;
+
 extern "C" {
-	
 	// Declaration of function
 	extern DLLAPI int DLLProject01_register_callbacks();
 	extern DLLAPI int PLM_execute_callback1(int* decision, va_list argv);
@@ -27,11 +28,18 @@ extern "C" {
 
 	extern DLLAPI int PLM_execute_callback1(int* decision, va_list argv) {
 		*decision = ALL_CUSTOMIZATIONS;
-		cout << "* * * * * * * * * * * * * * * * * * * * \n\n";
-		cout << "* * * Teamcenter Login Success * * *\n\n";
-		cout << "* * * * * * * * * * * * * * * * * * * * \n\n";
-		EPM_register_action_handler("custom-create-status", "Creating custom status", (EPM_action_handler_t)add_custom_status);
-		return status;
+		outFile.open("C:\\Users\\13351\\source\\repos\\outputLog.txt");
+		if (outFile.is_open()) { // if the file open
+			outFile << " * * * * * * * * * * * * * * * * * * * * \n";
+			outFile << " * * * Teamcenter Login Success * * * \n";
+			outFile << " * * * * * * * * * * * * * * * * * * * * \n\n";
+			EPM_register_action_handler("custom-create-status", "Creating custom status", (EPM_action_handler_t)add_custom_status);
+			return status;
+		}
+		else {
+			cerr << "Unable to open file outputLog.txt";
+			return 1; // Return an error code
+		}
 	}
 
 	extern DLLAPI int add_custom_status(EPM_action_message_t msg) {
@@ -56,7 +64,7 @@ extern "C" {
 					status = RELSTAT_create_release_status("CustomStatusDLL", &rel_status);
 					checkNullTag(rel_status);
 					status = RELSTAT_add_release_status(rel_status, 1, &attachments[i], true);
-					cout << "... Released status has been set ...\n\n";
+					outFile << "* * * Released status has been set * * *\n\n";
 				}
 			}
 		}
@@ -65,9 +73,10 @@ extern "C" {
 
 	extern DLLAPI int PLM_execute_callback2(int* decision, va_list argv) {
 		*decision = ALL_CUSTOMIZATIONS;
-		cout << "* * * * * * * * * * * * * * * * * * * * \n\n";
-		cout << "***** Teamcenter Logout Success *****\n\n";
-		cout << "* * * * * * * * * * * * * * * * * * * * \n\n";
+		outFile << "* * * * * * * * * * * * * * * * * * * * \n\n";
+		outFile << "***** Teamcenter Logout Success *****\n\n";
+		outFile << "* * * * * * * * * * * * * * * * * * * * \n\n";
+		outFile.close();
 		return status;
 	}
 }
@@ -77,7 +86,7 @@ int checkNullTag(tag_t tag)
 	if (tag == NULLTAG)
 	{
 		EMH_ask_error_text(status, &cError);
-		cout << "The Error is: " << cError;
+		outFile << "The Error is: " << cError;
 		exit(0);
 	}
 	else

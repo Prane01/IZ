@@ -3,8 +3,10 @@
 #include<tccore/method.h>
 #include<tccore/item.h>
 #include<tccore/grm.h>
+#include<fstream>
 #include<fclasses/tc_string.h>
 #include<tccore/aom_prop.h>
+#include<tcinit/tcinit.h>
 #define DLLAPI _declspec(dllexport)
 #define PLM_error (EMH_USER_error_base +20)
 using namespace std;
@@ -13,7 +15,8 @@ extern "C" {
 
 	METHOD_id_t tmethod_id;
 	int status = 0;
-
+	ofstream writeToFile;
+	string filePath = "D:\\Teamcenter14\\TC_ROOT\\TestLogFile.txt";
 	// Declaration of function
 	extern DLLAPI int DLLProject01_register_callbacks();
 	extern DLLAPI int PLM_execute_callback1(int* decision, va_list argv);
@@ -40,6 +43,22 @@ extern "C" {
 	}
 
 	extern DLLAPI int PLM_add_pre_action(METHOD_message_t* msg, va_list args) {
+		writeToFile.open(filePath);
+		if (!writeToFile.is_open()) {
+			writeToFile << "File Is not opened" << endl;
+		}
+		writeToFile << "\n\n******NOTE: Entering HON_ECN_Approve_ECR_on_Validation Handler******\n";
+		char* user_name = NULL;
+		tag_t tUser = NULLTAG;
+		POM_get_user(&user_name, &tUser);
+		writeToFile << "\n Before" << endl;
+		writeToFile << "\nuser_name : " << user_name << endl;
+		writeToFile << "\ntUser : " << tUser << endl;
+		ITK_init_module("infodba","infodba","dba");
+		writeToFile << "\n After" << endl;
+		POM_get_user(&user_name,&tUser);
+		writeToFile << "\nuser_name : " << user_name << endl;
+		writeToFile << "\ntUser : "<< tUser<<endl;
 		tag_t source_rev = NULLTAG;
 		source_rev = va_arg(args, tag_t);
 		tag_t* secObj = NULL;
