@@ -45,7 +45,7 @@ int ITK_user_main(int argc, char* argv[])
 	string toS = "31-Aug-2023 00:00";
 	char* to = new char[toS.length() + 1];
 	date_t* fromD = new date_t[1];
-	date_t* toD = new date_t[1];;
+	date_t* toD = new date_t[1];
 	bool f;
 	bool t;
 	tag_t childss = NULLTAG;

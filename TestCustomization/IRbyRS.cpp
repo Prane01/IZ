@@ -65,7 +65,6 @@ int ITK_user_main(int argc, char* argv[])
 			QRY_find_user_entries(tQuery, &entries, &actEntries, actValues);
 			if (entries != 0 && actEntries != NULLTAG && actValues != NULLTAG)
 			{
-				Item_fin
 				cout << entries << endl;
 				for (int i = 0; i < entries; i++)
 				{

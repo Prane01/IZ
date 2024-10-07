@@ -1,6 +1,8 @@
 #include<iostream>
 #include<tcinit/tcinit.h>
 #include<tc/emh.h>
+#include<tccore/grm.h>
+#include<itk/libitk_exports.h>
 #include<sa/groupmember.h>
 #include<tccore/aom_prop.h>
 using namespace std;
