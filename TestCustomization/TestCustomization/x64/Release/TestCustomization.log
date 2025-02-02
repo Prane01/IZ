@@ -1,0 +1,48 @@
+﻿  TestCOdes.cpp
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(291): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(294): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(297): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(298): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(430): warning C4996: 'gmtime': This function or variable may be unsafe. Consider using gmtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\time.h(496): note: see declaration of 'gmtime'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(469): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(568): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
+  c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(568): note: consider using '%zd' in the format string
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(575): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(580): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(624): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
+  c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(624): note: consider using '%zd' in the format string
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(634): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(640): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1167): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1169): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1170): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1173): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1174): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1175): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1177): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1178): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1180): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1181): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1183): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1184): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1255): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1577): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 3 has type 'tag_t *'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1577): warning C4313: 'printf': '%d' in format string conflicts with argument 3 of type 'tag_t *'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1724): warning C4996: 'AOM_UIF_ask_value': "AOM_UIF_ask_value" deprecated in Teamcenter "11.1"; Use "AOM_ask_displayable_values" instead.
+  d:\teamcenter13\tc_root\include\tccore\aom_prop.h(833): note: see declaration of 'AOM_UIF_ask_value'
+c:\users\13351\source\repos\testcustomization\testcustomization\testcodes.cpp(1837): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  Generating code
+  All 806 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+itk_main.obj : warning LNK4099: PDB 'vc160.pdb' was not found with 'itk_main.obj' or at 'C:\Users\13351\source\repos\TestCustomization\x64\Release\vc160.pdb'; linking object as if no debug info
+  TestCustomization.vcxproj -> C:\Users\13351\source\repos\TestCustomization\x64\Release\TestCustomization.exe
