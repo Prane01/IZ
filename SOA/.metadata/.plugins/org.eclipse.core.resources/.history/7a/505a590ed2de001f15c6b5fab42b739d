@@ -1,0 +1,17 @@
+package com.teamcenter.hello;
+
+public class Snippet {
+	public Properties getProperties(FileWriter writer) throws IOException {
+			
+			Properties properties = new Properties();
+			try {
+				properties.load(getClass().getResourceAsStream("datasetexport.properties"));
+				writer.write("\nINFO: properties file loaded successfully !!");
+			} catch (Exception e) {
+				e.printStackTrace();
+				writer.write("\nERROR: Unable to load properties file !!" + e.getMessage());
+			}	
+			return properties;
+		}
+}
+

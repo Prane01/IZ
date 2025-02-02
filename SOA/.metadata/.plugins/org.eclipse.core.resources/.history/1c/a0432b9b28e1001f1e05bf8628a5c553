@@ -1,0 +1,60 @@
+package com.teamcenter.soa.datasetexport.util;
+
+import com.teamcenter.clientx.AppXSession;
+import com.teamcenter.schemas.soa._2006_03.base.ServiceData;
+import com.teamcenter.services.internal.loose.core._2007_05.Session;
+import com.teamcenter.services.strong.core.DataManagementService;
+import com.teamcenter.services.strong.query.SavedQueryService;
+import com.teamcenter.services.strong.query._2007_06.SavedQuery.ExecuteSavedQueriesResponse;
+import com.teamcenter.services.strong.query._2007_06.SavedQuery.SavedQueryInput;
+import com.teamcenter.services.strong.query._2007_06.SavedQuery.SavedQueryResults;
+import com.teamcenter.services.strong.query._2010_04.SavedQuery.FindSavedQueriesCriteriaInput;
+import com.teamcenter.services.strong.query._2010_04.SavedQuery.FindSavedQueriesResponse;
+import com.teamcenter.soa.client.model.ModelObject;
+import com.teamcenter.soa.client.model.strong.ImanQuery;
+
+
+public class QueryManagement 
+{
+	
+	public static ModelObject[] getObjectsByPOMQuery(String id,Session session ) {
+		
+		DataManagementService serv = DataManagementService.getService(session.)
+	}
+	
+	public static ModelObject[] getObjects(String sQueryName, String[] sEntries, String[] sValues)
+	{
+		try
+		{
+			SavedQueryService queryService  = SavedQueryService.getService(AppXSession.getConnection());
+			SavedQueryInput[] queryInputs = new SavedQueryInput[1];
+
+			FindSavedQueriesCriteriaInput[] criteriaInput = new FindSavedQueriesCriteriaInput[1];
+			criteriaInput[0] = new FindSavedQueriesCriteriaInput();
+			criteriaInput[0].queryNames = new String[] {sQueryName};
+			
+			FindSavedQueriesResponse findQueryResponse = queryService.findSavedQueries(criteriaInput);
+			ImanQuery query = findQueryResponse.savedQueries[0];
+
+			queryInputs[0] = new SavedQueryInput();
+			queryInputs[0].entries = sEntries;
+			queryInputs[0].values = sValues;
+			queryInputs[0].query = query;
+			
+			ExecuteSavedQueriesResponse savedQueryResponse = queryService.executeSavedQueries(queryInputs);
+			if(savedQueryResponse.serviceData.sizeOfPartialErrors() > 0)
+			{
+				System.out.println("\nERROR:Failed while Executing a Query"+savedQueryResponse.serviceData.getPartialError(0).getErrorValues()[0].getMessage());
+			}
+			else
+			{
+				SavedQueryResults[] queryResults = savedQueryResponse.arrayOfResults;
+				for(SavedQueryResults queryResult : queryResults)
+				{
+					return queryResult.objects;
+				}
+			}
+		}catch(Exception e) {e.printStackTrace();}
+		return null;
+	}
+}

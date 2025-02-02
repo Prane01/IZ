@@ -1,0 +1,21 @@
+package com.teamcenter.soa.datasetexport.util;
+
+import com.teamcenter.services.loose.workflow._2007_06.Workflow;
+
+public class CreatePAL {
+
+	public CreatePAL() {
+		// TODO Auto-generated constructor stub
+	}
+	public void initiateProcess() {
+		System.out.println("\nProcess Initiated !!!\n");
+	}
+	try {
+		
+	
+	}
+	catch() {
+		
+	}
+
+}

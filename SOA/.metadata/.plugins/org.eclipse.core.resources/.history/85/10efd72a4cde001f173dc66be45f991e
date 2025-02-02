@@ -1,0 +1,14 @@
+USER_ID=infodba
+USER_PASS=infodba
+
+#GPLMTR 4Tier URL
+TC_4T_URL=http://localhost:8080tc
+
+#Mail Configuration
+MAIL_TO=cheepirisetti.praneeth@intelizign.com
+MAIL_FROM=testsupport@intelizign.com
+
+MAIL_HOST=smtp.honeywell.com
+MAIL_SUBJECT=Alert!! Accolade Integration failed !!
+MAIL_BODY_CONTENT=Dear GOLD PLM Support Team,</br></br>Below are the accolade projects failed during daily sync</br></br> 
+MAIL_FOOTER_CONTENT=</br></br>This message is auto generated.

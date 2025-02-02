@@ -1,0 +1,14 @@
+package com.teamcenter.hello;
+
+import java.util.Date;
+
+public class MessageUtil {
+
+	public static String getTimeStamp() {
+		
+		Date todayDate = new Date();
+		
+		
+		
+	}
+}

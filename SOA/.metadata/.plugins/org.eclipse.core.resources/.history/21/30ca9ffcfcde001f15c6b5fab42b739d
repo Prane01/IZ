@@ -1,0 +1,52 @@
+package com.teamcenter.hello;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.teamcenter.hello.Query;
+import com.teamcenter.clientx.AppXSession;
+import com.teamcenter.services.strong.core.DataManagementService;
+import com.teamcenter.services.strong.core._2007_01.DataManagement.VecStruct;
+import com.teamcenter.services.strong.core._2010_09.DataManagement.PropInfo;
+import com.teamcenter.soa.client.model.ModelObject;
+import com.teamcenter.soa.client.model.ServiceData;
+import com.teamcenter.soa.exceptions.NotLoadedException;
+
+@SuppressWarnings("unused")
+public class ObjectData {
+
+public void initiateProcess(String itemId, String revId, FileWriter writer) throws NotLoadedException {
+		
+		try {
+			
+			System.out.println("\nProcess Initiated !!!");
+			writer.write("\nProcess Initiated !!!");
+			
+			DataManagementService dmService = DataManagementService.getService(AppXSession.getConnection());
+			
+			Query qryObject = new Query();
+			
+			ModelObject revisionObject = qryObject.getObjects(itemId, revId, writer);
+			dmService.getProperties(new ModelObject[] {revisionObject}, new String[] {"object_name", "object_desc"});
+
+			String Name = revisionObject.getPropertyDisplayableValue("object_name");		
+			String Desc = revisionObject.getPropertyDisplayableValue("object_desc");
+			
+			System.out.println(Name + " : " + Desc);
+			writer.write("\n" + Name + " : " + Desc);
+			
+			if (!Desc.contains(Name)) {
+				Map<String, VecStruct> updateMapper = new HashMap<String, VecStruct>();
+				VecStruct vecStr = new VecStruct();
+				vecStr.stringVec = new String[] {};
+				dmService.setProperties(new ModelObject[] {revisionObject},updateMapper);
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

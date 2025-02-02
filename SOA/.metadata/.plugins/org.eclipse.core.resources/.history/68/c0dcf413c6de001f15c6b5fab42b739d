@@ -1,0 +1,16 @@
+package com.teamcenter.hello;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class MessageUtil {
+
+	public static String getTimeStamp() {
+		
+		Date todayDate = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_DD_hh mm Ms");
+		String formattedDate = formatter.format(todayDate);
+		
+		return formattedDate
+	}
+}
