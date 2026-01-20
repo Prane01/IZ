@@ -1,9 +1,0 @@
-package com.teamcenter.soa.datasetexport.util;
-
-public class CreatePAL {
-
-	public CreatePAL() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

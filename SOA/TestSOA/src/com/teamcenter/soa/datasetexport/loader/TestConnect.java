@@ -8,9 +8,13 @@ import java.util.Date;
 import java.util.Properties;
 
 import com.teamcenter.clientx.AppXSession;
+import com.teamcenter.services.strong.core.DataManagementService;
 import com.teamcenter.soa.datasetexport.util.CreatePAL;
 
 public class TestConnect {
+
+	public static AppXSession session;
+	public static DataManagementService dmService = DataManagementService.getService(AppXSession.getConnection());
 
 	public TestConnect() {
 		// TODO Auto-generated constructor stub
@@ -76,7 +80,7 @@ public class TestConnect {
 				
 				String serverHost = properties.getProperty("TC_4T_URL");
 				
-				AppXSession session = new AppXSession(serverHost);
+				session = new AppXSession(serverHost);
 				
 				try {
 				
@@ -102,7 +106,8 @@ public class TestConnect {
 				
 				try {
 					session.logout();
-					writer.write("\nINFO: sessio has logged out successfully!!");
+					writer.write("\nINFO: session has logged out successfully!!");
+					writer.close();
 					return;
 				} catch (Exception e) {
 					System.out.println("ERROR: error while logging out.");
