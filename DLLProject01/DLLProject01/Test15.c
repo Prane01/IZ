@@ -44,20 +44,20 @@
 		tag_t cfm_rule;
 		int decision = NO_CUSTOMIZATION;
 
-		BMF_EXECUTE_USER_EXIT_EXTENSIONS(("ImanQuery", "01_TC_set_query_where_run", QRY_custom_execute_msg, name, num_args, names, values, num_found, found));
+		BMF_EXECUTE_USER_EXIT_EXTENSIONS(("ImanQuery", "SM_get_all_parents", QRY_custom_execute_msg, name, num_args, names, values, num_found, found));
 
 		ifail = CUSTOM_execute_callbacks(&decision, "USER_execute_saved_query", name, num_args, names, values, num_found, found);
 
 		if (ifail != ITK_ok || decision != NO_CUSTOMIZATION)
 		{
-			printf ( "if (ifail != ITK_ok || decision != NO_CUSTOMIZATION)\n");
+			TC_write_syslog ( "if (ifail != ITK_ok || decision != NO_CUSTOMIZATION)\n");
 			return ifail;
 		}
 
 		/* first find a bunch of Items */
 		if (values != NULL)
 		{
-			printf("if (values != NULL)\n");
+			TC_write_syslog("if (values != NULL)\n");
 			ifail = ITEM_find(values[0], num_found, found);
 			if (ifail != ITK_ok)
 			{
@@ -66,7 +66,7 @@
 		}
 
 		ifail = CFM_find("Latest Working", &cfm_rule);
-		printf("CFM_find(Latest Working, &cfm_rule)\n");
+		TC_write_syslog("CFM_find(Latest Working, &cfm_rule)\n");
 		if (ifail != ITK_ok)
 		{
 			return ifail;
@@ -74,7 +74,7 @@
 		/* and then configure them to get their equivalent revisions */
 		for (i = 0; i < *num_found; i++)
 		{
-			printf("num_found : ",num_found);
+			TC_write_syslog("num_found : ",num_found);
 			char *how;
 			ifail = CFM_item_ask_configured(cfm_rule, (*found)[i], (*found) + i, &how);
 			if (ifail != ITK_ok)

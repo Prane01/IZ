@@ -65,8 +65,8 @@ extern "C" {
 		int sCount = 0;
 		char* objName = NULL;
 		tag_t cls_id = NULLTAG;
-		char* name = NULLTAG;
-		char* objType = NULLTAG;
+		char* name = NULL;
+		char* objType = NULL;
 		
 		cout << "Pre Action began...\n\n";
 

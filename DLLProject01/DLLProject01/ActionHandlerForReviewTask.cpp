@@ -9,6 +9,7 @@
 #include <tccore/aom_prop.h>
 #include <sa/sa.h>
 #include <epm/epm_task_template_itk.h>
+#include<unordered_map>
 using namespace std;
 #define DLLAPI _declspec(dllexport)
 #define PLM_error (EMH_USER_error_base +20)
