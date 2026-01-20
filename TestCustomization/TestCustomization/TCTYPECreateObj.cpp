@@ -25,7 +25,7 @@ int ITK_user_main(int argc, char* argv[])
 	tag_t createdObj = NULLTAG;
 	tag_t createdObj1 = NULLTAG;
 	tag_t tRelationType = NULLTAG;
-	tag_t* tItemMasterForm = NULLTAG;
+	tag_t* tItemMasterForm = NULL;
 	int count = 0;
 	const char* item_id ;
 
@@ -54,7 +54,6 @@ int ITK_user_main(int argc, char* argv[])
 			AOM_set_value_string(createdObj1, "object_name", "Hii2");
 			AOM_save_without_extensions(createdObj1);
 			cout << "Item created successfully...";
-
 			GRM_find_relation_type("IMAN_master_form", &tRelationType);
 			checkNullTag(tRelationType);
 			GRM_list_secondary_objects_only(createdObj1, tRelationType, &count, &tItemMasterForm);

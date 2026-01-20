@@ -1,6 +1,4 @@
 #include<iostream>
-#include<stdio.h>
-#include<conio.h>
 #include<fstream>
 #include<tccore/tctype.h>
 #include<tccore/aom_prop.h>
@@ -9,8 +7,6 @@
 #include<tcinit\tcinit.h>
 #include<tccore/item.h>
 #include<tc\emh.h>
-#include<stdlib.h>
-#include<string.h> 
 #include<epm/epm.h>
 #include<epm/epm_task_template_itk.h>
 #include<sa/sa.h>
@@ -28,20 +24,13 @@ tag_t* signOffs = NULL;
 
 int ITK_user_main(int argc, char* argv[])
 {
-
-
 	char *uname = ITK_ask_cli_argument("-u="); // API takes user input as username
-
 	char *pass = ITK_ask_cli_argument("-p="); // API takes user input as password
-
 	char *grp = ITK_ask_cli_argument("-g="); // API takes user input as group
-
 	char *item_id = ITK_ask_cli_argument("-id="); // API takes user input as group
-
 	char *rev_id = ITK_ask_cli_argument("-rid="); // API takes user input as group
 
 	if (ITK_ask_cli_argument("-h")) {  // For help command specified in display() function
-
 		display();
 		return ifail;
 	}
@@ -106,7 +95,7 @@ void display() {
 void executeTask(tag_t task, const char* item_id, const char* rev_id, tag_t* userss) {
 	tag_t root_task = NULLTAG;
 	tag_t signOff = NULLTAG;
-	tag_t* attachments = NULLTAG;
+	tag_t* attachments = NULL;
 	int c = 0;
 	const char* desc = "@08 SET FROM ITK WRKFLW";
 	char* name = NULL;
@@ -181,7 +170,6 @@ int checkNullTag(tag_t tag)
 	{
 		EMH_ask_error_text(ifail, &cError);
 		cout << "The Error is: " << cError;
-		exit(0);
 	}
 	else
 	{
@@ -195,7 +183,6 @@ int checkifail()
 	{
 		EMH_ask_error_text(ifail, &cError);
 		cout << "Error: " << cError;
-		exit(0);
 	}
 	else
 	{

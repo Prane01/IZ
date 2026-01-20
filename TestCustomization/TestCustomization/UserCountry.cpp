@@ -15,6 +15,8 @@
 #include<tccore/aom_prop.h>
 #include<time.h>
 #include<ctime>
+#include<pom/pom/pom.h>
+#include<sa/user.h>
 #include  "MyException.h"
 using namespace std;
 using namespace Teamcenter;
@@ -78,6 +80,25 @@ int ITK_user_main(int argc, char* argv[])
 			gmtime_s(timeInfo, &tRawTime);
 			strftime(timeStamp, sizeof(timeStamp), "%d-%m-%Y %H:%M:%S", timeInfo);
 			TC_write_syslog("[%s] User '%s' login successful.", timeStamp, user);
+
+			tag_t tUser = NULLTAG;
+			char* cpUserName = NULL;
+			tag_t tPerson = NULLTAG;
+			char* cpCountry = NULL;
+
+			status = POM_get_user(&cpUserName, &tUser);
+			cout << "tUser %d\n" << tUser;
+			TC_write_syslog("tUser '%d'\n", tUser);
+
+			cout << "cpUserName %s\n" << cpUserName;
+			TC_write_syslog("cpUserName '%s'\n", cpUserName);
+
+			status = SA_ask_user_person(tUser, &tPerson);
+			cout << "tPerson %d\n" << tPerson;
+			TC_write_syslog("tPerson '%d'\n", tPerson);
+			status = AOM_ask_value_string(tPerson, "PA5", &cpCountry);
+			cout << "cpCountry %s\n" << cpCountry;
+			TC_write_syslog("cpCountry '%s'\n", cpCountry);
 		}
 		else {
 			display();

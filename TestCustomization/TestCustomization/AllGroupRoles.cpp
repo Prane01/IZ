@@ -15,6 +15,7 @@
 #include<tccore/aom_prop.h>
 #include<time.h>
 #include<ctime>
+#include<sa/group.h>
 #include  "MyException.h"
 using namespace std;
 using namespace Teamcenter;
@@ -71,20 +72,29 @@ int ITK_user_main(int argc, char* argv[])
 			ITK_init_to_login();
 			status = ITK_init_module(user, pass, grp);
 			time_t tRawTime;
-			struct tm *timeInfo;
+			struct tm* timeInfo;
 			char timeStamp[20];
 			time(&tRawTime);
 			timeInfo = new struct tm;
 			gmtime_s(timeInfo, &tRawTime);
 			strftime(timeStamp, sizeof(timeStamp), "%d-%m-%Y %H:%M:%S", timeInfo);
 			TC_write_syslog("[%s] User '%s' login successful.", timeStamp, user);
+			int noOfGrp = 0;
+			tag_t* allGrps = NULL;
+			scoped_smptr<char> name;
+			status = SA_extent_group(&noOfGrp, &allGrps);
+			for (int i = 0; i < noOfGrp; i++) {
+				status = AOM_ask_value_string(allGrps[i], "name", &name);
+				cout << "name: " << name.getString() << endl;
+			}
+
 		}
 		else {
 			display();
 			return ifail;
 		}
 	}
-	catch (IFail &ex) {
+	catch (IFail& ex) {
 		ifail = ex.ifail();
 		scoped_smptr <char> message;
 		EMH_ask_error_text(ifail, &message);

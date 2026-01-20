@@ -15,7 +15,6 @@
 #include<tccore/aom_prop.h>
 #include<time.h>
 #include<ctime>
-#include  "MyException.h"
 using namespace std;
 using namespace Teamcenter;
 
@@ -78,6 +77,11 @@ int ITK_user_main(int argc, char* argv[])
 			gmtime_s(timeInfo, &tRawTime);
 			strftime(timeStamp, sizeof(timeStamp), "%d-%m-%Y %H:%M:%S", timeInfo);
 			TC_write_syslog("[%s] User '%s' login successful.", timeStamp, user);
+			const char* uid = "QWERTYUIHUJK";
+			char* id = NULL;
+			tag_t tag = (*(tag_t*)(uid));
+			AOM_ask_value_string(tag, "item_id", &id);
+			cout <<"id : " << id << endl;
 		}
 		else {
 			display();
@@ -90,6 +94,8 @@ int ITK_user_main(int argc, char* argv[])
 		EMH_ask_error_text(ifail, &message);
 		//writeToFile(message.getString());
 		TC_write_syslog("\nThe error is %s", message.getString());
+		TC_write_syslog("  in file [" __FILE__ "], line [%d]\n\n", __LINE__);
+		cout << "  in file [" __FILE__ "], line [%d]\n\n", __LINE__;
 		cout << "\nThe error is " << message.getString();
 	}
 	return ifail;

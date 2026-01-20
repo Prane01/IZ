@@ -10,7 +10,11 @@
 #include<stdlib.h>
 #include<string.h>
 #include<tccore/workspaceobject.h>
-
+#include<base_utils/TcResultStatus.hxx>
+#include<base_utils/ScopedSmPtr.hxx>
+#include<base_utils/ScopedPtr.hxx>
+#include<base_utils/IFail.hxx>
+using namespace Teamcenter;
 using namespace std;
 
 void display();
@@ -20,11 +24,11 @@ int ITK_user_main(int argc, char* argv[])
 	int ifail = 0;
 	char* cError = NULL;
 	int hits = 0;
-	tag_t* list = NULLTAG;
+	tag_t* list = NULL;
 	char* s1 = NULL;
 	int referencers = 0;
 	int* levels = 0;
-	tag_t* tReferencers = NULLTAG;
+	tag_t* tReferencers = NULL;
 	char** relations = NULL;
 	char* s2 = NULL;
 
@@ -41,35 +45,39 @@ int ITK_user_main(int argc, char* argv[])
 	if ((tc_strcmp(uname, "") != 0) && (tc_strcmp(pass, "") != 0) && (tc_strcmp(grp, "") != 0)) {  // Validates all values are filled
 		if (ITK_init_module(uname, pass, grp) == ITK_ok) {
 			cout << "\nLogin successful...\n\n";
-			ifail = WSOM_find2("XSAXSAXz", &hits, &list);
-			AOM_ask_value_string(list[0], "object_type", &s1);
-			cout << "Type: " << s1 << '\n';
-
-			if (strcmp(s1, "ItemRevision") == 0)
-			{
-				WSOM_where_referenced2(list[0], -1, &referencers, &levels, &tReferencers, &relations);
-				cout << "Total no.of references found: " << referencers << endl;
-				cout << "Levels of references found: " << *levels << endl;
-				for (int i = 0; i < referencers; i++)
-				{
-					AOM_ask_value_string(tReferencers[i], "object_string", &s2);
-					cout << "Referenced at: " << s2 << endl;
-				}
+			ResultStatus status(0);
+			try {
+				/*ifail = WSOM_find2("XSAXSAXz", &hits, &list);
+				AOM_ask_value_string(list[0], "object_type", &s1);
+				cout << "Type: " << s1 << '\n';*/
+				tag_t tRevision = NULLTAG;
+				
+				status = ITEM_find_rev("000081", "A", &tRevision);
+				cout << "tRevision: " << tRevision << endl;
+				status = AOM_ask_value_string(tRevision, "object_type", &s1);
+				cout << "s1: " << s1 << endl;
+				/*if (tc_strcmp(s1, "ExtensionRevision") == 0)
+				{*/
+					status = WSOM_where_referenced2(tRevision, 1, &referencers, &levels, &tReferencers, &relations);
+					cout << "Total no.of references found: " << referencers << endl;
+					cout << "Levels of references found: " << *levels << endl;
+					for (int i = 0; i < referencers; i++)
+					{
+						status = AOM_ask_value_string(tReferencers[i], "object_string", &s2);
+						cout << "relations at: " << relations << endl;
+						cout << "Referenced at: " << s2 << endl;
+					}
+				//}
 			}
-			else {
-				EMH_ask_error_text(ifail, &cError);
-				cout << "\n\n The error is : " << cError;
+			catch (IFail& ex) {
+				ifail = ex.ifail();
+				scoped_smptr <char> message;
+				EMH_ask_error_text(ifail, &message);
+				//writeToFile(message.getString());
+				TC_write_syslog("\nThe error is %s", message.getString());
+				cout << "\nThe error is " << message.getString();
 			}
 		}
-		else {
-			EMH_ask_error_text(ifail, &cError);
-			cout << "\n\n The error is : " << cError;
-		}
-	}
-	else
-	{
-		EMH_ask_error_text(ifail, &cError);
-		cout << "\n\n The error is : " << cError;
 	}
 	return ifail;
 }

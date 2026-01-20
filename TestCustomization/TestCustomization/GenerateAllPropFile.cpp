@@ -45,7 +45,7 @@ int ITK_user_main(int argc, char* argv[])
 			ITEM_find_item("152441", &tItem);
 			if (tItem != NULLTAG)
 			{
-				fout.open("D:\sample file.csv", ios::out);
+				fout.open("D:\\sample file.csv", ios::out);
 				AOM_ask_prop_names(tItem, &Pcount, &propNames);
 				cout << "Generating csv of properties..\n";
 				for (int i = 0; i < Pcount; i++) {

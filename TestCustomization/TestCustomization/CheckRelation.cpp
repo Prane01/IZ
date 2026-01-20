@@ -15,6 +15,7 @@
 #include<tccore/aom_prop.h>
 #include<time.h>
 #include<ctime>
+#include <tccore/grm.h>
 #include  "MyException.h"
 using namespace std;
 using namespace Teamcenter;
@@ -78,6 +79,17 @@ int ITK_user_main(int argc, char* argv[])
 			gmtime_s(timeInfo, &tRawTime);
 			strftime(timeStamp, sizeof(timeStamp), "%d-%m-%Y %H:%M:%S", timeInfo);
 			TC_write_syslog("[%s] User '%s' login successful.", timeStamp, user);
+			tag_t tItem = NULLTAG;
+			tag_t tRelationType = NULLTAG;
+			tag_t* secObjects = NULL;
+			int secCount = 0;
+			ITEM_find_rev("000033", "A", &tItem);
+			GRM_find_relation_type("IMAN_specification", &tRelationType);
+			GRM_list_secondary_objects_only(tItem, tRelationType, &secCount, &secObjects);
+			for (int i = 0; i < secCount; i++)
+			{
+				cout << "secObjects : " << i << " " << secObjects[i] << endl;
+			}
 		}
 		else {
 			display();

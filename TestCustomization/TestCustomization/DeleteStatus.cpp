@@ -15,7 +15,6 @@
 #include<tccore/aom_prop.h>
 #include<time.h>
 #include<ctime>
-#include  "MyException.h"
 using namespace std;
 using namespace Teamcenter;
 
@@ -78,6 +77,33 @@ int ITK_user_main(int argc, char* argv[])
 			gmtime_s(timeInfo, &tRawTime);
 			strftime(timeStamp, sizeof(timeStamp), "%d-%m-%Y %H:%M:%S", timeInfo);
 			TC_write_syslog("[%s] User '%s' login successful.", timeStamp, user);
+
+			int iFail = ITK_ok;
+			ResultStatus status(0);
+			tag_t tRevision = NULLTAG;
+			int n_status = 0;
+			tag_t* statusList = NULL;
+			tag_t tAttrId = NULLTAG;
+
+			status = ITEM_find_rev("000056", "A", &tRevision);
+			status = WSOM_ask_release_status_list(tRevision, &n_status, &statusList);
+			status = POM_attr_id_of_attr("release_status_list", "WorkspaceObject", &tAttrId);
+			for (int ii = 0; ii < n_status; ii++)
+			{
+				scoped_smptr<char> name;
+				status = AOM_ask_value_string(statusList[ii], "name", &name);
+				if (strcmp(name.get(), "Approved") == 0)
+				{
+					cout << name.get() << endl;
+					tag_t status_to_delete = statusList[ii];
+					ITKCALL(POM_refresh_instances_any_class(1, &tRevision,POM_modify_lock));
+					ITKCALL(POM_remove_from_attr(1, &tRevision, tAttrId, ii, 1));
+					logical unload = true;
+					ITKCALL(POM_save_instances(1, &tRevision,unload));
+					/*ITKCALL(POM_refresh_instances_any_class(1, &status_to_delete,POM_delete_lock));
+					ITKCALL(POM_delete_instances(1,&status_to_delete));*/
+				}
+			}
 		}
 		else {
 			display();
@@ -86,6 +112,7 @@ int ITK_user_main(int argc, char* argv[])
 	}
 	catch (IFail &ex) {
 		ifail = ex.ifail();
+		//ITKCALL(ifail);
 		scoped_smptr <char> message;
 		EMH_ask_error_text(ifail, &message);
 		//writeToFile(message.getString());

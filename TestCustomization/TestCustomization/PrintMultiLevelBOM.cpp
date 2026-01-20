@@ -116,7 +116,7 @@ void findChilds(tag_t* tchildren, int c) {
 	tag_t p = NULLTAG;
 	if (c == 0)
 	{
-		exit(0);
+		return;
 	}
 	else
 	{

@@ -33,7 +33,6 @@ int ITK_user_main(int argc, char* argv[])
 	char *grp = ITK_ask_cli_argument("-g="); // API takes user input as group
 
 	if (ITK_ask_cli_argument("-h")) {  // For help command specified in display() function
-
 		display();
 		return ifail;
 	}

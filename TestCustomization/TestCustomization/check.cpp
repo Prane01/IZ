@@ -9,7 +9,6 @@
 #include<tc\emh.h>
 #include<stdlib.h>
 #include<string.h>
-#include <check/ITK_okCheck.h>
 #define IFAIL_CHECK(X)
 using namespace std;
 
